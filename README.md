@@ -1,60 +1,57 @@
-<h1>British Airways: Modeling Lounge Eligibility at Heathrow Terminal 3</h1>
+# British Airways: Modeling Lounge Eligibility at Heathrow Terminal 3
 
-<p>
-  <strong>Project Overview:</strong><br>
-  This project provides a flexible, data-driven model for forecasting premium lounge demand at Heathrow Terminal 3. Using real British Airways flight schedule data, the approach helps BA optimize lounge space planning, staffing, and future investments.
-</p>
+## Project Overview
 
-<hr>
+This project develops a practical, scalable approach to forecast premium lounge demand at Heathrow Terminal 3 using real British Airways summer schedule data. The method enables efficient planning of lounge space, staffing, and future investment, all while delivering a seamless premium experience for BA’s most valued customers.
 
-<h2>Dataset Description</h2>
-<p>
-  The <strong>British Airways Summer Schedule dataset</strong> includes every BA flight departing Heathrow Terminal 3 for the summer period.
-  <ul>
-    <li><b>Flight Information:</b> <code>FLIGHT_DATE</code>, <code>FLIGHT_TIME</code>, <code>AIRLINE_CD</code>, <code>FLIGHT_NO</code>, <code>DEPARTURE_STATION_CD</code>, <code>ARRIVAL_STATION_CD</code></li>
-    <li><b>Route & Region:</b> <code>ARRIVAL_COUNTRY</code>, <code>ARRIVAL_REGION</code>, <code>Route type</code> ("Short-haul", "Long-haul")</li>
-    <li><b>Seating Capacity:</b> <code>FIRST_CLASS_SEATS</code>, <code>BUSINESS_CLASS_SEATS</code>, <code>ECONOMY_SEATS</code></li>
-    <li><b>Time of Day:</b> <code>TIME_OF_DAY</code> (morning, afternoon, evening, etc.)</li>
-  </ul>
-  This structure enables analysis of passenger volumes and groupings by region and route type to estimate lounge eligibility.
-</p>
+---
 
-<hr>
+## Dataset Description
 
-<h2>Process Summary</h2>
-<ol>
-  <li>Grouped flights using two scalable criteria: <strong>Route type</strong> (Short-haul/Long-haul) and <strong>Region</strong> (Europe, North America, Asia, Middle East).</li>
-  <li>Summed total seat counts for each group to estimate passenger volume.</li>
-  <li>Applied industry-based percentage assumptions for lounge eligibility in three tiers (Tier 1, Tier 2, Tier 3).</li>
-  <li>Created a reusable lookup table, enabling planners to estimate future lounge demand for any schedule.</li>
-</ol>
+The dataset provides a comprehensive view of all scheduled BA flights departing from Heathrow Terminal 3 during the summer. Each row represents a flight, with these key fields:
 
-<hr>
+- **Flight Information:** `FLIGHT_DATE`, `FLIGHT_TIME`, `AIRLINE_CD`, `FLIGHT_NO`, `DEPARTURE_STATION_CD`, `ARRIVAL_STATION_CD`
+- **Route & Region:** `ARRIVAL_COUNTRY`, `ARRIVAL_REGION`, and `Route type` (“Short-haul”, “Long-haul”)
+- **Seating Capacity:** `FIRST_CLASS_SEATS`, `BUSINESS_CLASS_SEATS`, `ECONOMY_SEATS`
+- **Time of Day:** `TIME_OF_DAY`
+- **(If present) Lounge Eligibility:** Estimated numbers for Tier 1, Tier 2, and Tier 3 lounges
 
-<h2>Key Findings & Visualizations</h2>
+This structure allows robust estimation of passenger capacity and lounge eligibility across different route groups.
 
-<ul>
-  <li><b>Short-haul Europe</b> has the highest total seat volume, followed by <b>Long-haul North America</b>.</li>
-  <li>Lounge eligibility percentages are highest for long-haul routes, especially to North America, reflecting more premium and frequent flyer traffic.</li>
-  <li>Short-haul routes show lower eligibility, matching expectations for more leisure travel and fewer premium seats.</li>
-</ul>
+---
 
-<!-- Example Chart Embed (replace src with your image file) -->
+## Process Summary
+
+1. **Grouping Flights:**  
+   - Flights were grouped by **Route Type** (Short-haul vs. Long-haul) and **Region** (Europe, North America, Asia, Middle East).
+2. **Estimating Passenger Volume:**  
+   - Total available seats per group were summed (First, Business, Economy).
+3. **Applying Eligibility Assumptions:**  
+   - Industry-standard percentages were assigned for lounge eligibility in three tiers, creating a flexible lookup table.
+4. **Reusable Tool:**  
+   - The resulting table enables British Airways planners to estimate lounge demand for any schedule in seconds.
+
+---
+
+## Key Findings & Visualizations
+
+- **Short-haul Europe** flights have the highest total seat volume, followed by **Long-haul North America**.
+- Lounge eligibility percentages are highest for **long-haul routes**, especially North America, reflecting more premium and frequent flyer traffic.
+- **Short-haul routes** show lower eligibility, as expected for leisure-heavy, less premium segments.
+
 <p align="center">
-  <img Screenshot 2025-06-22 194037="images/lounge_seat_distribution.png" alt="Seat Distribution by Group" width="600"><br>
-  <i>Figure 1: Total Seats by Group and Estimated Lounge Eligibility Percentages</i>
+  <img src="b6718fa9-6bce-4d97-847a-f673980fef9d.png" width="650" alt="Pivot Table and Bar Chart: Seat Distribution and Lounge Tiers">
 </p>
+<p align="center"><i>Figure 1: Total Seats by Group and Estimated Lounge Eligibility Percentages</i></p>
 
-<!-- Example: Add more visuals if needed -->
-<!--
+---
+
+## Lounge Eligibility Lookup Table
+
 <p align="center">
-  <img src="images/lookup_table_example.png" alt="Lounge Eligibility Lookup Table" width="500">
+  <img src="Screenshot 2025-06-22 192348.png" width="700" alt="Lounge Eligibility Lookup Table Example">
 </p>
--->
 
-<hr>
-
-<h2>Lounge Eligibility Lookup Table</h2>
 <table>
   <tr>
     <th>Group</th>
@@ -68,47 +65,53 @@
     <td>0.5%</td>
     <td>2.0%</td>
     <td>6.0%</td>
-    <td>Reflects low premium traffic on intra-European routes.</td>
+    <td>Leisure/short business routes, fewer premium passengers</td>
   </tr>
   <tr>
     <td>Long-haul – North America</td>
     <td>2.0%</td>
     <td>5.0%</td>
     <td>15.0%</td>
-    <td>Highest premium and status passenger volume.</td>
+    <td>Highest premium/status volume</td>
   </tr>
   <tr>
     <td>Long-haul – Asia</td>
     <td>2.0%</td>
     <td>4.0%</td>
     <td>12.0%</td>
-    <td>Strong premium demand, especially on business routes.</td>
+    <td>Strong premium demand, major business routes</td>
   </tr>
   <tr>
     <td>Long-haul – Middle East</td>
     <td>1.5%</td>
     <td>4.0%</td>
     <td>10.0%</td>
-    <td>Steady business/connecting traffic; Tier 1 hypothetical.</td>
+    <td>Steady business/connecting traffic</td>
   </tr>
 </table>
 
-<hr>
+---
 
-<h2>Justification & Assumptions</h2>
-<ul>
-  <li><b>Grouping:</b> By route type and region to capture real differences in passenger mix.</li>
-  <li><b>Assumptions:</b> Eligibility percentages are based on typical industry ratios and can be adjusted as new data becomes available.</li>
-  <li><b>Reusability:</b> The lookup table applies to any future schedule; planners only need to assign flights to a group.</li>
-  <li><b>Tier 1:</b> Percentages included to inform future potential for a premium lounge (e.g., Concorde Room) even if not currently available.</li>
-</ul>
+## Justification & Assumptions
 
-<hr>
+**How did you group the flights?**  
+Grouped by Route Type (Short-haul, Long-haul) and Region (Europe, North America, Asia, Middle East) to capture differences in passenger mix and eligibility.
 
-<h2>Conclusion</h2>
-<p>
-  This modeling approach enables British Airways to forecast lounge demand quickly and accurately, supporting smarter planning for premium customer experience. The process is transparent, scalable, and adaptable to future changes in flight schedules or customer behavior.
-</p>
+**Why this grouping?**  
+These categories are standard in airline planning and best reflect real variations in premium demand.
+
+**What assumptions did you make?**  
+Eligibility percentages are based on industry ratios: higher for long-haul/intercontinental, lower for short-haul Europe. They’re simple to update as new data comes in.
+
+**How can your model apply to future schedules?**  
+The lookup table is broad-category-based, not flight-specific. Any schedule can be grouped and estimated with the same logic, making it future-proof and scalable.
 
 ---
 
+## Conclusion
+
+This approach gives British Airways a **practical, scalable, and transparent** way to forecast lounge demand at Heathrow Terminal 3. Grouping by route type and region—combined with clear eligibility assumptions—lets BA quickly estimate lounge needs for any schedule, supporting smarter space planning, staffing, and future investment to deliver a world-class premium experience.
+
+---
+
+*For more details, see the [Task 1 documentation](Task 1.docx) or review the process and assumptions in the included screenshots and tables.*
