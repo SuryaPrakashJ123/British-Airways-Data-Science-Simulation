@@ -40,7 +40,7 @@ This structure allows robust estimation of passenger capacity and lounge eligibi
 - **Short-haul routes** show lower eligibility, as expected for leisure-heavy, less premium segments.
 
 <p align="center">
-  <img src="b6718fa9-6bce-4d97-847a-f673980fef9d.png" width="650" alt="Pivot Table and Bar Chart: Seat Distribution and Lounge Tiers">
+  <img src="lounge seat.png" width="650" alt="Pivot Table and Bar Chart: Seat Distribution and Lounge Tiers">
 </p>
 <p align="center"><i>Figure 1: Total Seats by Group and Estimated Lounge Eligibility Percentages</i></p>
 
@@ -49,7 +49,7 @@ This structure allows robust estimation of passenger capacity and lounge eligibi
 ## Lounge Eligibility Lookup Table
 
 <p align="center">
-  <img src="Screenshot 2025-06-22 192348.png" width="700" alt="Lounge Eligibility Lookup Table Example">
+  <img src="lookup" width="700" alt="Lounge Eligibility Lookup Table Example">
 </p>
 
 <table>
